@@ -21,10 +21,13 @@ suggest what to wear, and whether to bring an umbrella or put on boots.
 - OpenWeather API · AI API
 
 ## Run
-API keys are passed at build time and never committed:
+API keys live in a local `env.json` that is git-ignored and never committed:
 
 ```bash
+cp env.example.json env.json   # then put your keys in env.json
 flutter pub get
 dart run build_runner build --delete-conflicting-outputs
-flutter run --dart-define=OPENWEATHER_API_KEY=your_key --dart-define=AI_API_KEY=your_key
+flutter run --dart-define-from-file=env.json
 ```
+
+In Android Studio the shared `main.dart` run configuration (`.run/`) already passes `--dart-define-from-file=env.json`.
