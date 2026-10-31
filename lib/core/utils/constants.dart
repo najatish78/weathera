@@ -2,8 +2,8 @@ class AppConstant {
   /// OpenWeather (https://openweathermap.org/price) — Free plan endpoints.
   static const weatherBaseUrl = 'https://api.openweathermap.org';
 
-  /// Keys are passed at build time, never committed:
-  /// flutter run --dart-define=OPENWEATHER_API_KEY=xxx --dart-define=AI_API_KEY=xxx
+  /// Keys live in the git-ignored `env.json` (see `env.example.json`):
+  /// flutter run --dart-define-from-file=env.json
   static const openWeatherApiKey = String.fromEnvironment(
     'OPENWEATHER_API_KEY',
   );
