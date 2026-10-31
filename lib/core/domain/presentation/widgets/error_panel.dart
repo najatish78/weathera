@@ -9,7 +9,15 @@ class ErrorPanel extends StatelessWidget {
   final Failure failure;
   final void Function()? onTryAgain;
 
-  const ErrorPanel({super.key, required this.failure, this.onTryAgain});
+  /// Button text instead of "Try again" (e.g. "Open settings").
+  final String? actionLabel;
+
+  const ErrorPanel({
+    super.key,
+    required this.failure,
+    this.onTryAgain,
+    this.actionLabel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +53,7 @@ class ErrorPanel extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "general.Try again".tr(),
+                    actionLabel ?? "general.Try again".tr(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.labelLarge
                         ?.copyWith(color: Colors.white),

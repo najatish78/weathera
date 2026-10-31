@@ -9,7 +9,13 @@
     "unexpectedResponse": "Unexpected response from the server",
     "rate_limited": "Too many requests, please try again shortly",
     "local_storage": "Couldn't read saved data",
-    "some_thing_wrong": "Something went wrong"
+    "some_thing_wrong": "Something went wrong",
+    "location": {
+      "service_disabled": "Location services are off. Turn them on to see the weather where you are",
+      "denied": "We need your location to show the weather where you are",
+      "denied_forever": "Location access is blocked. Allow it from the app settings",
+      "unavailable": "We couldn't get your location, please try again"
+    }
   },
   "general": {
     "app_name": "Weathera",
@@ -18,9 +24,24 @@
     "ok": "Ok",
     "Cancel": "Cancel",
     "today": "Today",
-    "tomorrow": "Tomorrow"
+    "tomorrow": "Tomorrow",
+    "open_settings": "Open settings"
   },
   "home": {
     "title": "What's the weather like?"
+  },
+  "weather": {
+    "feels_like": "Feels like {value}",
+    "rain_chance": "Rain {value}",
+    "next_hours": "Next hours",
+    "details": "Details",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "wind_value": "{value} km/h",
+    "clouds": "Clouds",
+    "rain_last_hour": "Rain (1h)",
+    "mm_value": "{value} mm",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset"
   }
 }
