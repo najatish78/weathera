@@ -1,0 +1,26 @@
+{
+  "failures": {
+    "unknown": "Unknown error",
+    "no_internet": "There is no internet connection",
+    "invalid_api_key": "The weather API key is missing or invalid",
+    "not_found": "We couldn't find this place",
+    "server_error": "There is an error in the server",
+    "time_out": "Request timed out, no server response",
+    "unexpectedResponse": "Unexpected response from the server",
+    "rate_limited": "Too many requests, please try again shortly",
+    "local_storage": "Couldn't read saved data",
+    "some_thing_wrong": "Something went wrong"
+  },
+  "general": {
+    "app_name": "Weathera",
+    "loading": "Loading",
+    "Try again": "Try again",
+    "ok": "Ok",
+    "Cancel": "Cancel",
+    "today": "Today",
+    "tomorrow": "Tomorrow"
+  },
+  "home": {
+    "title": "What's the weather like?"
+  }
+}
