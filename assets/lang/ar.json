@@ -9,7 +9,13 @@
     "unexpectedResponse": "استجابة غير متوقعة من الخادم",
     "rate_limited": "طلبات كثيرة، يرجى المحاولة بعد قليل",
     "local_storage": "تعذرت قراءة البيانات المحفوظة",
-    "some_thing_wrong": "حدث خطأ ما"
+    "some_thing_wrong": "حدث خطأ ما",
+    "location": {
+      "service_disabled": "خدمات الموقع مطفأة. شغّلها لتشوف الطقس عندك",
+      "denied": "نحتاج موقعك لنعرض الطقس عندك",
+      "denied_forever": "الوصول للموقع محظور. اسمح به من إعدادات التطبيق",
+      "unavailable": "تعذر تحديد موقعك، حاول مرة أخرى"
+    }
   },
   "general": {
     "app_name": "ويذرا",
@@ -18,9 +24,24 @@
     "ok": "موافق",
     "Cancel": "إلغاء",
     "today": "اليوم",
-    "tomorrow": "غداً"
+    "tomorrow": "غداً",
+    "open_settings": "فتح الإعدادات"
   },
   "home": {
     "title": "كيف الطقس اليوم؟"
+  },
+  "weather": {
+    "feels_like": "الإحساس {value}",
+    "rain_chance": "مطر {value}",
+    "next_hours": "الساعات القادمة",
+    "details": "التفاصيل",
+    "humidity": "الرطوبة",
+    "wind": "الرياح",
+    "wind_value": "{value} كم/س",
+    "clouds": "الغيوم",
+    "rain_last_hour": "المطر (ساعة)",
+    "mm_value": "{value} مم",
+    "sunrise": "الشروق",
+    "sunset": "الغروب"
   }
 }

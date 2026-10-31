@@ -22,11 +22,23 @@ import 'package:weathera/core/data/datasource/base_remote_datasource.dart'
     as _i861;
 import 'package:weathera/core/data/datasource/theme_local_datasource.dart'
     as _i614;
-import 'package:weathera/core/data/network/network_Info.dart' as _i904;
 import 'package:weathera/core/data/network/network_info.dart' as _i768;
 import 'package:weathera/core/domain/presentation/blocs/theme_bloc/theme_bloc.dart'
     as _i213;
+import 'package:weathera/core/services/location_helper.dart' as _i11;
 import 'package:weathera/di/modules/injectable_module.dart' as _i689;
+import 'package:weathera/features/weather/data/datasource/weather_remote_datasource.dart'
+    as _i287;
+import 'package:weathera/features/weather/data/datasource/weather_remote_datasource_impl.dart'
+    as _i733;
+import 'package:weathera/features/weather/data/repository/weather_repository_impl.dart'
+    as _i683;
+import 'package:weathera/features/weather/domain/repository/weather_repository.dart'
+    as _i407;
+import 'package:weathera/features/weather/domain/usecase/get_current_weather_usecase.dart'
+    as _i930;
+import 'package:weathera/features/weather/domain/usecase/get_forecast_usecase.dart'
+    as _i511;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -36,6 +48,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final injectableModule = _$InjectableModule();
+    gh.lazySingleton<_i11.LocationHelper>(() => _i11.LocationHelper());
     await gh.lazySingletonAsync<_i460.SharedPreferences>(
       () => injectableModule.sharedPref,
       preResolve: true,
@@ -50,11 +63,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i861.BaseRemoteDataSourceImpl>(
       () => _i861.BaseRemoteDataSourceImpl(dio: gh<_i361.Dio>()),
     );
+    gh.singleton<_i287.WeatherRemoteDataSource>(
+      () => _i733.WeatherRemoteDataSourceImpl(dio: gh<_i361.Dio>()),
+    );
+    gh.singleton<_i407.WeatherRepository>(
+      () => _i683.WeatherRepositoryImpl(gh<_i287.WeatherRemoteDataSource>()),
+    );
     gh.lazySingleton<_i614.ThemeLocalDataSource>(
       () => _i614.ThemeLocalDataSourceImpl(gh<_i460.SharedPreferences>()),
     );
-    gh.lazySingleton<_i904.NetworkInfo>(
-      () => _i904.NetworkInfoImpl(gh<_i973.InternetConnectionChecker>()),
+    gh.factory<_i930.GetCurrentWeatherUseCase>(
+      () => _i930.GetCurrentWeatherUseCase(gh<_i407.WeatherRepository>()),
+    );
+    gh.factory<_i511.GetForecastUseCase>(
+      () => _i511.GetForecastUseCase(gh<_i407.WeatherRepository>()),
     );
     gh.lazySingleton<_i768.NetworkInfo>(
       () => _i768.NetworkInfoImpl(gh<_i973.InternetConnectionChecker>()),
