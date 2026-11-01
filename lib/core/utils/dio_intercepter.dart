@@ -25,6 +25,10 @@ void _logRawServerResponse(DioException err, int statusCode, dynamic data) {
 bool _isOpenWeatherRequest(RequestOptions options) =>
     options.uri.toString().startsWith(AppConstant.weatherBaseUrl);
 
+bool _isAiRequest(RequestOptions options) =>
+    AppConstant.aiBaseUrl.isNotEmpty &&
+    options.uri.toString().startsWith(AppConstant.aiBaseUrl);
+
 HttpFailure _failureFromResponse(int statusCode, Response? response) {
   final data = response?.data;
   if (statusCode == HttpStatus.unauthorized) {
@@ -74,9 +78,14 @@ class AppInterceptors extends Interceptor {
       );
     }
 
-    options.sendTimeout = const Duration(seconds: 60);
-    options.connectTimeout = const Duration(seconds: 60);
-    options.receiveTimeout = const Duration(seconds: 60);
+    // weathera-ai-service: API key header and a shorter timeout.
+    final isAi = _isAiRequest(options);
+    if (isAi) options.headers['X-API-Key'] = AppConstant.aiApiKey;
+
+    final timeout = isAi ? AppConstant.aiTimeout : const Duration(seconds: 60);
+    options.sendTimeout = timeout;
+    options.connectTimeout = timeout;
+    options.receiveTimeout = timeout;
 
     handler.next(options);
   }

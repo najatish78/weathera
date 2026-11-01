@@ -27,6 +27,18 @@ import 'package:weathera/core/domain/presentation/blocs/theme_bloc/theme_bloc.da
     as _i213;
 import 'package:weathera/core/services/location_helper.dart' as _i11;
 import 'package:weathera/di/modules/injectable_module.dart' as _i689;
+import 'package:weathera/features/outfit/data/datasource/outfit_local_datasource.dart'
+    as _i626;
+import 'package:weathera/features/outfit/data/datasource/outfit_remote_datasource.dart'
+    as _i743;
+import 'package:weathera/features/outfit/data/datasource/outfit_remote_datasource_impl.dart'
+    as _i906;
+import 'package:weathera/features/outfit/data/repository/outfit_repository_impl.dart'
+    as _i215;
+import 'package:weathera/features/outfit/domain/repository/outfit_repository.dart'
+    as _i647;
+import 'package:weathera/features/outfit/domain/usecase/suggest_outfit_usecase.dart'
+    as _i79;
 import 'package:weathera/features/weather/data/datasource/weather_remote_datasource.dart'
     as _i287;
 import 'package:weathera/features/weather/data/datasource/weather_remote_datasource_impl.dart'
@@ -57,6 +69,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i973.InternetConnectionChecker>(
       () => injectableModule.createConnectionChecker(),
     );
+    gh.singleton<_i743.OutfitRemoteDataSource>(
+      () => _i906.OutfitRemoteDataSourceImpl(dio: gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i626.OutfitLocalDataSource>(
+      () => _i626.OutfitLocalDataSourceImpl(gh<_i460.SharedPreferences>()),
+    );
     gh.lazySingleton<_i1070.BaseLocalDataSource>(
       () => _i1070.BaseLocalDataSourceImp(gh<_i460.SharedPreferences>()),
     );
@@ -85,6 +103,15 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i213.ThemeBloc(
         baseLocalDataSourcel: gh<_i614.ThemeLocalDataSource>(),
       ),
+    );
+    gh.singleton<_i647.OutfitRepository>(
+      () => _i215.OutfitRepositoryImpl(
+        gh<_i743.OutfitRemoteDataSource>(),
+        gh<_i626.OutfitLocalDataSource>(),
+      ),
+    );
+    gh.factory<_i79.SuggestOutfitUseCase>(
+      () => _i79.SuggestOutfitUseCase(gh<_i647.OutfitRepository>()),
     );
     return this;
   }
