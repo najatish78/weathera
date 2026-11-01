@@ -2,7 +2,7 @@
   "failures": {
     "unknown": "Unknown error",
     "no_internet": "There is no internet connection",
-    "invalid_api_key": "The weather API key is missing or invalid",
+    "invalid_api_key": "The API key is missing or invalid",
     "not_found": "We couldn't find this place",
     "server_error": "There is an error in the server",
     "time_out": "Request timed out, no server response",
@@ -43,5 +43,16 @@
     "mm_value": "{value} mm",
     "sunrise": "Sunrise",
     "sunset": "Sunset"
+  },
+  "outfit": {
+    "title": "What to wear",
+    "loading": "Picking your outfit...",
+    "top": "Top",
+    "bottom": "Bottom",
+    "shoes": "Shoes",
+    "jacket": "Jacket",
+    "umbrella": "Take an umbrella",
+    "sunscreen": "Wear sunscreen",
+    "fallback_note": "Quick suggestion, the AI is unavailable right now"
   }
 }

@@ -9,6 +9,12 @@ class AppConstant {
   );
   static const aiApiKey = String.fromEnvironment('AI_API_KEY');
 
+  /// weathera-ai-service (iOS simulator: `http://localhost:8000`).
+  static const aiBaseUrl = String.fromEnvironment('AI_BASE_URL');
+
+  /// The AI service may wait on the LLM before falling back; don't hang longer.
+  static const aiTimeout = Duration(seconds: 15);
+
   /// `metric` → °C, m/s.
   static const weatherUnits = 'metric';
 
